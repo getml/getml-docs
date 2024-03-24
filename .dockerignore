@@ -1,0 +1,5 @@
+# .dockerignore
+.envrc
+.venv
+build
+source/api
