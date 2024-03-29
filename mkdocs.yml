@@ -1,4 +1,5 @@
-site_name: My Docs
+site_name: GetML
+site_url: https://getml.github.io/gemtl-docs/
 theme:
   name: material
 
