@@ -1,0 +1,6641 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../xgboost_classifier/">
+      
+      
+        <link rel="next" href="../../preprocessors/__init__/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.15">
+    
+    
+      
+        <title>xgboost_regressor - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.7e359304.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getml.predictors.xgboost_regressor" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              xgboost_regressor
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/getml/getml" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    getml/getml
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/getml/getml" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    getml/getml
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Code Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Code Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    getml
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            getml
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../communication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    communication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../constants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cross_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cross_validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../data/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    data
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_4" id="__nav_1_1_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            data
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/access/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    access
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_4_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../data/columns/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    columns
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_4_2" id="__nav_1_1_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            columns
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/aggregation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aggregation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/collect_footer_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    collect_footer_data
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/column/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    column
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/columns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    columns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/constants/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/from_value/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    from_value
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/get_scalar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    get_scalar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/last_change/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    last_change
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/last_change_from_col/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    last_change_from_col
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/length/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/length_property/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    length_property
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/make_iter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    make_iter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/parse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    parse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/random/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    random
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/repr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repr
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/repr_html/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    repr_html
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/subroles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    subroles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/to_arrow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    to_arrow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/to_numpy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    to_numpy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/unique/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    unique
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/columns/unit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    unit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/container/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    container
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/data_frame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    data_frame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/data_model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    data_model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/diagram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/helpers2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/load_container/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    load_container
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/placeholder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    placeholder
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/relationship/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    relationship
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/roles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    roles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/roles_obj/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    roles_obj
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_4_15" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../data/split/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    split
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_4_15" id="__nav_1_1_4_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_4_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_4_15">
+            <span class="md-nav__icon md-icon"></span>
+            split
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/split/concat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    concat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/split/random/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    random
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/split/time/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/staging/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    staging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/star_schema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    star_schema
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_4_18" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../data/subroles/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    subroles
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_4_18" id="__nav_1_1_4_18_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_4_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_4_18">
+            <span class="md-nav__icon md-icon"></span>
+            subroles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/subroles/exclude/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    exclude
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/subroles/include/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    include
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/subroles/only/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    only
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/subset/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    subset
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/time/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/time_series/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time_series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data/view/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    view
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../database/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    database
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_5" id="__nav_1_1_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            database
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_bigquery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_bigquery
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_greenplum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_greenplum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_hana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_hana
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_mariadb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_mariadb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_mysql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_odbc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_odbc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_postgres/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_postgres
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connect_sqlite3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect_sqlite3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/connection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/copy_table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    copy_table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/drop_table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    drop_table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/get/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    get
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/get_colnames/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    get_colnames
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/list_connections/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    list_connections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/list_tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    list_tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/read_csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    read_csv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/read_s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    read_s3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/sniff_csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniff_csv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../database/sniff_s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniff_s3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../datasets/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    datasets
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_6" id="__nav_1_1_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            datasets
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/samples_generator/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    samples_generator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../engine/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    engine
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_7" id="__nav_1_1_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            engine
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engine/helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engine/launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    launch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../feature_learning/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    feature_learning
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_8" id="__nav_1_1_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            feature_learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/aggregations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    aggregations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/fastboost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fastboost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/fastprop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fastprop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/feature_learner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feature_learner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/loss_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    loss_functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/multirel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    multirel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/relboost/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    relboost
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/relmt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    relmt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../feature_learning/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../hyperopt/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    hyperopt
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_10" id="__nav_1_1_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_10">
+            <span class="md-nav__icon md-icon"></span>
+            hyperopt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/burn_in/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    burn_in
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/hyperopt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperopt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/kernels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kernels
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/load_hyperopt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    load_hyperopt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/optimization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/tuning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tuning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hyperopt/validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_12" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../pipeline/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    pipeline
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_12" id="__nav_1_1_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_12">
+            <span class="md-nav__icon md-icon"></span>
+            pipeline
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/column/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    column
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/columns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    columns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/dialect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    dialect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/feature/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    feature
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/helpers2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/metadata/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    metadata
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/metrics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    metrics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/plots/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    plots
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/score/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    score
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/scores_container/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scores_container
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/sql_code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sql_code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/sql_string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sql_string
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/tables/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tables
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/tags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_13" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    predictors
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_13" id="__nav_1_1_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_13_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_1_13">
+            <span class="md-nav__icon md-icon"></span>
+            predictors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linear_regression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linear_regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic_regression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    logistic_regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../predictor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    predictor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scale_gbm_classifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scale_gbm_classifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scale_gbm_regressor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    scale_gbm_regressor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xgboost_classifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    xgboost_classifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    xgboost_regressor
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    xgboost_regressor
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Page contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Page contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getml.predictors.xgboost_regressor" class="md-nav__link">
+    <span class="md-ellipsis">
+      xgboost_regressor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getml.predictors.xgboost_regressor.XGBoostRegressor" class="md-nav__link">
+    <span class="md-ellipsis">
+      XGBoostRegressor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XGBoostRegressor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getml.predictors.xgboost_regressor.XGBoostRegressor.validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_14" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../preprocessors/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    preprocessors
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_14" id="__nav_1_1_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_14">
+            <span class="md-nav__icon md-icon"></span>
+            preprocessors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/category_trimmer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    category_trimmer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/email_domain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    email_domain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/imputation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    imputation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mapping
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/preprocessor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    preprocessor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/seasonal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seasonal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/substring/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    substring
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/text_field_splitter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    text_field_splitter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../preprocessors/validate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    validate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../progress_bar/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    progress_bar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_16" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../project/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    project
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_16" id="__nav_1_1_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_16">
+            <span class="md-nav__icon md-icon"></span>
+            project
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/attrs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    attrs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_16_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../project/containers/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    containers
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_16_2" id="__nav_1_1_16_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_16_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_16_2">
+            <span class="md-nav__icon md-icon"></span>
+            containers
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/containers/data_frames/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    data_frames
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/containers/hyperopts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hyperopts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../project/containers/pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spark/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spark
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_18" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../sqlite3/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    sqlite3
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_18" id="__nav_1_1_18_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_18">
+            <span class="md-nav__icon md-icon"></span>
+            sqlite3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/connect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    connect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/contains/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    contains
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/count_above_mean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    count_above_mean
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/count_below_mean/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    count_below_mean
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/count_distinct_over_count/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    count_distinct_over_count
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/email_domain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    email_domain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/ewma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ewma
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/ewma_trend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ewma_trend
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/execute/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    execute
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/first/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    first
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/get_word/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    get_word
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/kurtosis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kurtosis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/last/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    last
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/median/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    median
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/mode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/num_max/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    num_max
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/num_min/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    num_min
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/num_words/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    num_words
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/quantiles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    quantiles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/read_csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    read_csv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/read_list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    read_list
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/read_pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    read_pandas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/skew/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    skew
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/sniff_csv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniff_csv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/sniff_pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sniff_pandas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/split_text_field/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    split_text_field
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/stddev/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    stddev
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/time_since_first_maximum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time_since_first_maximum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/time_since_first_minimum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time_since_first_minimum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/time_since_last_maximum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time_since_last_maximum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/time_since_last_minimum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    time_since_last_minimum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/to_list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    to_list
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/to_pandas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    to_pandas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/trend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    trend
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/var/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    var
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sqlite3/variation_coefficient/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    variation_coefficient
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_19" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../utilities/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    utilities
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_19" id="__nav_1_1_19_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_1_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_19">
+            <span class="md-nav__icon md-icon"></span>
+            utilities
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1_19_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../utilities/formatting/__init__/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    formatting
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1_1_19_1" id="__nav_1_1_19_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_1_1_19_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1_19_1">
+            <span class="md-nav__icon md-icon"></span>
+            formatting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/cell_formatter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cell_formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/column_formatter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    column_formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/data_frame_formatter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    data_frame_formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/ellipsis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ellipsis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/formatter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/helpers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    helpers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/signature_formatter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    signature_formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/formatting/view_formatter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    view_formatter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/templates/__init__/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../version/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    version
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Page contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Page contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getml.predictors.xgboost_regressor" class="md-nav__link">
+    <span class="md-ellipsis">
+      xgboost_regressor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getml.predictors.xgboost_regressor.XGBoostRegressor" class="md-nav__link">
+    <span class="md-ellipsis">
+      XGBoostRegressor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XGBoostRegressor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getml.predictors.xgboost_regressor.XGBoostRegressor.validate" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>xgboost_regressor</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="getml.predictors.xgboost_regressor"></a>
+  <div class="doc doc-contents first">
+  
+      <p>A gradient boosting model for predicting regression problems.</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="getml.predictors.xgboost_regressor.XGBoostRegressor" class="doc doc-heading">
+          <code>XGBoostRegressor</code>
+
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#getml.predictors.xgboost_regressor.XGBoostRegressor" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="getml.predictors.predictor._Predictor">_Predictor</span></code></p>
+
+  
+      <p>Gradient boosting regressor based on <code>xgboost &lt;https://xgboost.readthedocs.io/en/latest/&gt;</code>_.</p>
+<p>XGBoost is an implementation of the gradient tree boosting algorithm that
+is widely recognized for its efficiency and predictive accuracy.</p>
+<p>Gradient tree boosting trains an ensemble of decision trees by training
+each tree to predict the <em>prediction error of all previous trees</em> in the
+ensemble:</p>
+<p>.. math::</p>
+<div class="language-text highlight"><pre><span></span><code>\min_{\nabla f_{t,i}} \sum_i L(f_{t-1,i} + \nabla f_{t,i}; y_i),
+</code></pre></div>
+<p>where :math:<code>\nabla f_{t,i}</code> is the prediction generated by the
+newest decision tree for sample :math:<code>i</code> and :math:<code>f_{t-1,i}</code> is
+the prediction generated by all previous trees, :math:<code>L(...)</code> is
+the loss function used and :math:<code>y_i</code> is the :ref:<code>target
+&lt;annotating_roles_target&gt;</code> we are trying to predict.</p>
+<p>XGBoost implements this general approach by adding two specific components:</p>
+<ol>
+<li>
+<p>The loss function :math:<code>L(...)</code> is approximated using a Taylor series.</p>
+</li>
+<li>
+<p>The leaves of the decision tree :math:<code>\nabla f_{t,i}</code> contain weights
+   that can be regularized.</p>
+</li>
+</ol>
+<p>These weights are calculated as follows:</p>
+<p>.. math::</p>
+<div class="language-text highlight"><pre><span></span><code>w_l = -\frac{\sum_{i \in l} g_i}{ \sum_{i \in l} h_i + \lambda},
+</code></pre></div>
+<p>where :math:<code>g_i</code> and :math:<code>h_i</code> are the first and second order derivative
+of :math:<code>L(...)</code> w.r.t. :math:<code>f_{t-1,i}</code>, :math:<code>w_l</code> denotes the weight
+on leaf :math:<code>l</code> and :math:<code>i \in l</code> denotes all samples on that leaf.</p>
+<p>:math:<code>\lambda</code> is the regularization parameter <code>reg_lambda</code>.
+This hyperparameter can be set by the users or the hyperparameter
+optimization algorithm to avoid overfitting.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>booster</code></td>
+          <td>
+                <code>string</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Which base classifier to use.</p>
+<p>Possible values:</p>
+<ul>
+<li>'gbtree': normal gradient boosted decision trees</li>
+<li>'gblinear': uses a linear model instead of decision trees</li>
+<li>'dart': adds dropout to the standard gradient boosting algorithm.
+  Please also refer to the remarks on <em>rate_drop</em> for further
+  explanation on 'dart'.</li>
+</ul>
+            </div>
+          </td>
+          <td>
+                <code>&#39;gbtree&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>colsample_bylevel</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Subsample ratio for the columns used, for each level
+inside a tree.</p>
+<p>Note that XGBoost grows its trees level-by-level, not
+node-by-node.
+At each level, a subselection of the features will be randomly
+picked and the best
+feature for each split will be chosen. This hyperparameter
+determines the share of features randomly picked at each level.
+When set to 1, then now such sampling takes place.</p>
+<p><em>Decreasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: (0, 1]</p>
+            </div>
+          </td>
+          <td>
+                <code>1.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>colsample_bytree</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Subsample ratio for the columns used, for each tree.
+This means that for each tree, a subselection
+of the features will be randomly chosen. This hyperparameter
+determines the share of features randomly picked for each tree.</p>
+<p><em>Decreasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: (0, 1]</p>
+            </div>
+          </td>
+          <td>
+                <code>1.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>external_memory</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>When the in_memory flag of the engine is set to False,
+XGBoost can use the external memory functionality.
+This reduces the memory consumption,
+but can also affect the quality of the predictions.
+External memory is deactivated by default and it
+is recommended to only use external memory
+for feature selection.
+When the in_memory flag of the engine is set to True,
+(the default value), XGBoost will never use
+external memory.</p>
+            </div>
+          </td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>gamma</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Minimum loss reduction required for any update
+to the tree. This means that every potential update
+will first be evaluated for its improvement to the loss
+function. If the improvement exceeds gamma,
+the update will be accepted.</p>
+<p><em>Increasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [0, :math:<code>\infty</code>]</p>
+            </div>
+          </td>
+          <td>
+                <code>0.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>learning_rate</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Learning rate for the gradient boosting algorithm.
+When a new tree :math:<code>\nabla f_{t,i}</code> is trained,
+it will be added to the existing trees
+:math:<code>f_{t-1,i}</code>. Before doing so, it will be
+multiplied by the <em>learning_rate</em>.</p>
+<p><em>Decreasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [0, 1]</p>
+            </div>
+          </td>
+          <td>
+                <code>0.1</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>max_delta_step</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The maximum delta step allowed for the weight estimation
+of each tree.</p>
+<p><em>Decreasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [0, :math:<code>\infty</code>)</p>
+            </div>
+          </td>
+          <td>
+                <code>0.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>max_depth</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Maximum allowed depth of the trees.</p>
+<p><em>Decreasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [0, :math:<code>\infty</code>]</p>
+            </div>
+          </td>
+          <td>
+                <code>3</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>min_child_weights</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Minimum sum of weights needed in each child node for a
+split. The idea here is that any leaf should have
+a minimum number of samples in order to avoid overfitting.
+This very common form of regularizing decision trees is
+slightly
+modified to refer to weights instead of number of samples,
+but the basic idea is the same.</p>
+<p><em>Increasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [0, :math:<code>\infty</code>]</p>
+            </div>
+          </td>
+          <td>
+                <code>1.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>n_estimators</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Number of estimators (trees).</p>
+<p><em>Decreasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [10, :math:<code>\infty</code>]</p>
+            </div>
+          </td>
+          <td>
+                <code>100</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>normalize_type</code></td>
+          <td>
+                <code>string</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>This determines how to normalize trees during 'dart'.</p>
+<p>Possible values:</p>
+<ul>
+<li>
+<p>'tree': a new tree has the same weight as a single
+  dropped tree.</p>
+</li>
+<li>
+<p>'forest': a new tree has the same weight as a the sum of
+  all dropped trees.</p>
+</li>
+</ul>
+<p>Please also refer to the remarks on
+<em>rate_drop</em> for further explanation.</p>
+<p>Will be ignored if <code>booster</code> is not set to 'dart'.</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;tree&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>n_jobs</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Number of parallel threads. When set to zero, then
+the optimal number of threads will be inferred automatically.</p>
+<p>Range: [0, :math:<code>\infty</code>]</p>
+            </div>
+          </td>
+          <td>
+                <code>1</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>objective</code></td>
+          <td>
+                <code>string</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Specify the learning task and the corresponding
+learning objective.</p>
+<p>Possible values:</p>
+<ul>
+<li>'reg:squarederror'</li>
+<li>'reg:tweedie'</li>
+</ul>
+            </div>
+          </td>
+          <td>
+                <code>&#39;reg:squarederror&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>one_drop</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If set to True, then at least one tree will always be
+dropped out. Setting this hyperparameter to <em>true</em> reduces
+the likelihood of overfitting.</p>
+<p>Please also refer to the remarks on
+<em>rate_drop</em> for further explanation.</p>
+<p>Will be ignored if <code>booster</code> is not set to 'dart'.</p>
+            </div>
+          </td>
+          <td>
+                <code>False</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>rate_drop</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Dropout rate for trees - determines the probability
+that a tree will be dropped out. Dropout is an
+algorithm that enjoys considerable popularity in
+the deep learning community. It means that every node can
+be randomly removed during training.</p>
+<p>This approach
+can also be applied to gradient boosting, where it
+means that every tree can be randomly removed with
+a certain probability. Said probability is determined
+by <em>rate_drop</em>. Dropout for gradient boosting is
+referred to as the 'dart' algorithm.</p>
+<p><em>Increasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Will be ignored if <code>booster</code> is not set to 'dart'.</p>
+            </div>
+          </td>
+          <td>
+                <code>0.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>reg_alpha</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>L1 regularization on the weights.</p>
+<p><em>Increasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [0, :math:<code>\infty</code>]</p>
+            </div>
+          </td>
+          <td>
+                <code>0.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>reg_lambda</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>L2 regularization on the weights. Please refer to
+the introductory remarks to understand how this
+hyperparameter influences your weights.</p>
+<p><em>Increasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: [0, :math:<code>\infty</code>]</p>
+            </div>
+          </td>
+          <td>
+                <code>1.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>sample_type</code></td>
+          <td>
+                <code>string</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Possible values:</p>
+<ul>
+<li>
+<p>'uniform': every tree is equally likely to be dropped
+  out</p>
+</li>
+<li>
+<p>'weighted': the dropout probability will be proportional
+  to a tree's weight</p>
+</li>
+</ul>
+<p>Please also refer to the remarks on
+<em>rate_drop</em> for further explanation.</p>
+<p>Will be ignored if <code>booster</code> is not set to 'dart'.</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;uniform&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>silent</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>In silent mode, XGBoost will not print out information on
+the training progress.</p>
+            </div>
+          </td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>skip_drop</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Probability of skipping the dropout during a given
+iteration. Please also refer to the remarks on
+<em>rate_drop</em> for further explanation.</p>
+<p><em>Increasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Will be ignored if <code>booster</code> is not set to 'dart'.</p>
+<p>Range: [0, 1]</p>
+            </div>
+          </td>
+          <td>
+                <code>0.0</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>subsample</code></td>
+          <td>
+                <code>float</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Subsample ratio from the training set. This means
+that for every tree a subselection of <em>samples</em>
+from the training set will be included into training.
+Please note that this samples <em>without</em> replacement -
+the common approach for random forests is to sample
+<em>with</em> replace.</p>
+<p><em>Decreasing</em> this hyperparameter reduces the
+likelihood of overfitting.</p>
+<p>Range: (0, 1]</p>
+            </div>
+          </td>
+          <td>
+                <code>1.0</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+            <details class="quote">
+              <summary>Source code in <code>getml/predictors/xgboost_regressor.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">XGBoostRegressor</span><span class="p">(</span><span class="n">_Predictor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gradient boosting regressor based on `xgboost &lt;https://xgboost.readthedocs.io/en/latest/&gt;`_.</span>
+
+<span class="sd">    XGBoost is an implementation of the gradient tree boosting algorithm that</span>
+<span class="sd">    is widely recognized for its efficiency and predictive accuracy.</span>
+
+<span class="sd">    Gradient tree boosting trains an ensemble of decision trees by training</span>
+<span class="sd">    each tree to predict the *prediction error of all previous trees* in the</span>
+<span class="sd">    ensemble:</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \\min_{\\nabla f_{t,i}} \\sum_i L(f_{t-1,i} + \\nabla f_{t,i}; y_i),</span>
+
+<span class="sd">    where :math:`\\nabla f_{t,i}` is the prediction generated by the</span>
+<span class="sd">    newest decision tree for sample :math:`i` and :math:`f_{t-1,i}` is</span>
+<span class="sd">    the prediction generated by all previous trees, :math:`L(...)` is</span>
+<span class="sd">    the loss function used and :math:`y_i` is the :ref:`target</span>
+<span class="sd">    &lt;annotating_roles_target&gt;` we are trying to predict.</span>
+
+<span class="sd">    XGBoost implements this general approach by adding two specific components:</span>
+
+<span class="sd">    1. The loss function :math:`L(...)` is approximated using a Taylor series.</span>
+
+<span class="sd">    2. The leaves of the decision tree :math:`\\nabla f_{t,i}` contain weights</span>
+<span class="sd">       that can be regularized.</span>
+
+<span class="sd">    These weights are calculated as follows:</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        w_l = -\\frac{\\sum_{i \\in l} g_i}{ \\sum_{i \\in l} h_i + \\lambda},</span>
+
+<span class="sd">    where :math:`g_i` and :math:`h_i` are the first and second order derivative</span>
+<span class="sd">    of :math:`L(...)` w.r.t. :math:`f_{t-1,i}`, :math:`w_l` denotes the weight</span>
+<span class="sd">    on leaf :math:`l` and :math:`i \\in l` denotes all samples on that leaf.</span>
+
+<span class="sd">    :math:`\\lambda` is the regularization parameter `reg_lambda`.</span>
+<span class="sd">    This hyperparameter can be set by the users or the hyperparameter</span>
+<span class="sd">    optimization algorithm to avoid overfitting.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        booster (string, optional):</span>
+<span class="sd">            Which base classifier to use.</span>
+
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            * &#39;gbtree&#39;: normal gradient boosted decision trees</span>
+<span class="sd">            * &#39;gblinear&#39;: uses a linear model instead of decision trees</span>
+<span class="sd">            * &#39;dart&#39;: adds dropout to the standard gradient boosting algorithm.</span>
+<span class="sd">              Please also refer to the remarks on *rate_drop* for further</span>
+<span class="sd">              explanation on &#39;dart&#39;.</span>
+
+<span class="sd">        colsample_bylevel (float, optional):</span>
+<span class="sd">            Subsample ratio for the columns used, for each level</span>
+<span class="sd">            inside a tree.</span>
+
+<span class="sd">            Note that XGBoost grows its trees level-by-level, not</span>
+<span class="sd">            node-by-node.</span>
+<span class="sd">            At each level, a subselection of the features will be randomly</span>
+<span class="sd">            picked and the best</span>
+<span class="sd">            feature for each split will be chosen. This hyperparameter</span>
+<span class="sd">            determines the share of features randomly picked at each level.</span>
+<span class="sd">            When set to 1, then now such sampling takes place.</span>
+
+<span class="sd">            *Decreasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: (0, 1]</span>
+
+<span class="sd">        colsample_bytree (float, optional):</span>
+<span class="sd">            Subsample ratio for the columns used, for each tree.</span>
+<span class="sd">            This means that for each tree, a subselection</span>
+<span class="sd">            of the features will be randomly chosen. This hyperparameter</span>
+<span class="sd">            determines the share of features randomly picked for each tree.</span>
+
+<span class="sd">            *Decreasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: (0, 1]</span>
+
+<span class="sd">        external_memory (bool, optional):</span>
+<span class="sd">            When the in_memory flag of the engine is set to False,</span>
+<span class="sd">            XGBoost can use the external memory functionality.</span>
+<span class="sd">            This reduces the memory consumption,</span>
+<span class="sd">            but can also affect the quality of the predictions.</span>
+<span class="sd">            External memory is deactivated by default and it</span>
+<span class="sd">            is recommended to only use external memory</span>
+<span class="sd">            for feature selection.</span>
+<span class="sd">            When the in_memory flag of the engine is set to True,</span>
+<span class="sd">            (the default value), XGBoost will never use</span>
+<span class="sd">            external memory.</span>
+
+<span class="sd">        gamma (float, optional):</span>
+<span class="sd">            Minimum loss reduction required for any update</span>
+<span class="sd">            to the tree. This means that every potential update</span>
+<span class="sd">            will first be evaluated for its improvement to the loss</span>
+<span class="sd">            function. If the improvement exceeds gamma,</span>
+<span class="sd">            the update will be accepted.</span>
+
+<span class="sd">            *Increasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [0, :math:`\\infty`]</span>
+
+<span class="sd">        learning_rate (float, optional):</span>
+<span class="sd">            Learning rate for the gradient boosting algorithm.</span>
+<span class="sd">            When a new tree :math:`\\nabla f_{t,i}` is trained,</span>
+<span class="sd">            it will be added to the existing trees</span>
+<span class="sd">            :math:`f_{t-1,i}`. Before doing so, it will be</span>
+<span class="sd">            multiplied by the *learning_rate*.</span>
+
+<span class="sd">            *Decreasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [0, 1]</span>
+
+<span class="sd">        max_delta_step (float, optional):</span>
+<span class="sd">            The maximum delta step allowed for the weight estimation</span>
+<span class="sd">            of each tree.</span>
+
+<span class="sd">            *Decreasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [0, :math:`\\infty`)</span>
+
+<span class="sd">        max_depth (int, optional):</span>
+<span class="sd">            Maximum allowed depth of the trees.</span>
+
+<span class="sd">            *Decreasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [0, :math:`\\infty`]</span>
+
+<span class="sd">        min_child_weights (float, optional):</span>
+<span class="sd">            Minimum sum of weights needed in each child node for a</span>
+<span class="sd">            split. The idea here is that any leaf should have</span>
+<span class="sd">            a minimum number of samples in order to avoid overfitting.</span>
+<span class="sd">            This very common form of regularizing decision trees is</span>
+<span class="sd">            slightly</span>
+<span class="sd">            modified to refer to weights instead of number of samples,</span>
+<span class="sd">            but the basic idea is the same.</span>
+
+<span class="sd">            *Increasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [0, :math:`\\infty`]</span>
+
+<span class="sd">        n_estimators (int, optional):</span>
+<span class="sd">            Number of estimators (trees).</span>
+
+<span class="sd">            *Decreasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [10, :math:`\\infty`]</span>
+
+<span class="sd">        normalize_type (string, optional):</span>
+<span class="sd">            This determines how to normalize trees during &#39;dart&#39;.</span>
+
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            * &#39;tree&#39;: a new tree has the same weight as a single</span>
+<span class="sd">              dropped tree.</span>
+
+<span class="sd">            * &#39;forest&#39;: a new tree has the same weight as a the sum of</span>
+<span class="sd">              all dropped trees.</span>
+
+<span class="sd">            Please also refer to the remarks on</span>
+<span class="sd">            *rate_drop* for further explanation.</span>
+
+<span class="sd">            Will be ignored if `booster` is not set to &#39;dart&#39;.</span>
+
+<span class="sd">        n_jobs (int, optional):</span>
+<span class="sd">            Number of parallel threads. When set to zero, then</span>
+<span class="sd">            the optimal number of threads will be inferred automatically.</span>
+
+<span class="sd">            Range: [0, :math:`\\infty`]</span>
+
+<span class="sd">        objective (string, optional):</span>
+<span class="sd">            Specify the learning task and the corresponding</span>
+<span class="sd">            learning objective.</span>
+
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            * &#39;reg:squarederror&#39;</span>
+<span class="sd">            * &#39;reg:tweedie&#39;</span>
+
+<span class="sd">        one_drop (bool, optional):</span>
+<span class="sd">            If set to True, then at least one tree will always be</span>
+<span class="sd">            dropped out. Setting this hyperparameter to *true* reduces</span>
+<span class="sd">            the likelihood of overfitting.</span>
+
+<span class="sd">            Please also refer to the remarks on</span>
+<span class="sd">            *rate_drop* for further explanation.</span>
+
+<span class="sd">            Will be ignored if `booster` is not set to &#39;dart&#39;.</span>
+
+<span class="sd">        rate_drop (float, optional):</span>
+<span class="sd">            Dropout rate for trees - determines the probability</span>
+<span class="sd">            that a tree will be dropped out. Dropout is an</span>
+<span class="sd">            algorithm that enjoys considerable popularity in</span>
+<span class="sd">            the deep learning community. It means that every node can</span>
+<span class="sd">            be randomly removed during training.</span>
+
+<span class="sd">            This approach</span>
+<span class="sd">            can also be applied to gradient boosting, where it</span>
+<span class="sd">            means that every tree can be randomly removed with</span>
+<span class="sd">            a certain probability. Said probability is determined</span>
+<span class="sd">            by *rate_drop*. Dropout for gradient boosting is</span>
+<span class="sd">            referred to as the &#39;dart&#39; algorithm.</span>
+
+<span class="sd">            *Increasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Will be ignored if `booster` is not set to &#39;dart&#39;.</span>
+
+<span class="sd">        reg_alpha (float, optional):</span>
+<span class="sd">            L1 regularization on the weights.</span>
+
+<span class="sd">            *Increasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [0, :math:`\\infty`]</span>
+
+<span class="sd">        reg_lambda (float, optional):</span>
+<span class="sd">            L2 regularization on the weights. Please refer to</span>
+<span class="sd">            the introductory remarks to understand how this</span>
+<span class="sd">            hyperparameter influences your weights.</span>
+
+<span class="sd">            *Increasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: [0, :math:`\\infty`]</span>
+
+<span class="sd">        sample_type (string, optional):</span>
+<span class="sd">            Possible values:</span>
+
+<span class="sd">            * &#39;uniform&#39;: every tree is equally likely to be dropped</span>
+<span class="sd">              out</span>
+
+<span class="sd">            * &#39;weighted&#39;: the dropout probability will be proportional</span>
+<span class="sd">              to a tree&#39;s weight</span>
+
+<span class="sd">            Please also refer to the remarks on</span>
+<span class="sd">            *rate_drop* for further explanation.</span>
+
+<span class="sd">            Will be ignored if `booster` is not set to &#39;dart&#39;.</span>
+
+<span class="sd">        silent (bool, optional):</span>
+<span class="sd">            In silent mode, XGBoost will not print out information on</span>
+<span class="sd">            the training progress.</span>
+
+<span class="sd">        skip_drop (float, optional):</span>
+<span class="sd">            Probability of skipping the dropout during a given</span>
+<span class="sd">            iteration. Please also refer to the remarks on</span>
+<span class="sd">            *rate_drop* for further explanation.</span>
+
+<span class="sd">            *Increasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Will be ignored if `booster` is not set to &#39;dart&#39;.</span>
+
+<span class="sd">            Range: [0, 1]</span>
+
+<span class="sd">        subsample (float, optional):</span>
+<span class="sd">            Subsample ratio from the training set. This means</span>
+<span class="sd">            that for every tree a subselection of *samples*</span>
+<span class="sd">            from the training set will be included into training.</span>
+<span class="sd">            Please note that this samples *without* replacement -</span>
+<span class="sd">            the common approach for random forests is to sample</span>
+<span class="sd">            *with* replace.</span>
+
+<span class="sd">            *Decreasing* this hyperparameter reduces the</span>
+<span class="sd">            likelihood of overfitting.</span>
+
+<span class="sd">            Range: (0, 1]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">booster</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gbtree&quot;</span>
+    <span class="n">colsample_bylevel</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">colsample_bytree</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">early_stopping_rounds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">external_memory</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">gamma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">learning_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">max_delta_step</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">max_depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">min_child_weights</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">n_estimators</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">normalize_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tree&quot;</span>
+    <span class="n">num_parallel_tree</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">n_jobs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">objective</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;reg:squarederror&quot;</span>
+    <span class="n">one_drop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">rate_drop</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">reg_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">reg_lambda</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">sample_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;uniform&quot;</span>
+    <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">skip_drop</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">subsample</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="c1"># ----------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks both the types and the values of all instance</span>
+<span class="sd">        variables and raises an exception if something is off.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            params (dict, optional): A dictionary containing</span>
+<span class="sd">                the parameters to validate. If not is passed,</span>
+<span class="sd">                the own parameters will be validated.</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                x = getml.predictors.XGBoostRegressor()</span>
+<span class="sd">                x.gamma = 200</span>
+<span class="sd">                x.validate()</span>
+
+<span class="sd">        Note:</span>
+
+<span class="sd">            This method is called at end of the __init__ constructor</span>
+<span class="sd">            and every time before the predictor - or a class holding</span>
+<span class="sd">            it as an instance variable - is send to the getML engine.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># ------------------------------------------------------------</span>
+
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;params must be None or a dictionary!&quot;</span><span class="p">)</span>
+
+        <span class="n">_validate_xgboost_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="c1"># ------------------------------------------------------------</span>
+
+        <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;objective&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;reg:squarederror&quot;</span><span class="p">,</span> <span class="s2">&quot;reg:tweedie&quot;</span><span class="p">,</span> <span class="s2">&quot;reg:linear&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;&#39;objective&#39; supported in XGBoostRegressor</span>
+<span class="sd">                                 are &#39;reg:squarederror&#39;, &#39;reg:tweedie&#39;,</span>
+<span class="sd">                                 and &#39;reg:linear&#39;&quot;&quot;&quot;</span>
+            <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="getml.predictors.xgboost_regressor.XGBoostRegressor.validate" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#getml.predictors.xgboost_regressor.XGBoostRegressor.validate" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Checks both the types and the values of all instance
+variables and raises an exception if something is off.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>params</code></td>
+          <td>
+                <code>dict</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A dictionary containing
+the parameters to validate. If not is passed,
+the own parameters will be validated.</p>
+            </div>
+          </td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Examples:</p>
+<div class="language-text highlight"><pre><span></span><code>.. code-block:: python
+
+    x = getml.predictors.XGBoostRegressor()
+    x.gamma = 200
+    x.validate()
+</code></pre></div>
+<p>Note:</p>
+<div class="language-text highlight"><pre><span></span><code>This method is called at end of the __init__ constructor
+and every time before the predictor - or a class holding
+it as an instance variable - is send to the getML engine.
+</code></pre></div>
+
+          <details class="quote">
+            <summary>Source code in <code>getml/predictors/xgboost_regressor.py</code></summary>
+            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks both the types and the values of all instance</span>
+<span class="sd">    variables and raises an exception if something is off.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        params (dict, optional): A dictionary containing</span>
+<span class="sd">            the parameters to validate. If not is passed,</span>
+<span class="sd">            the own parameters will be validated.</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            x = getml.predictors.XGBoostRegressor()</span>
+<span class="sd">            x.gamma = 200</span>
+<span class="sd">            x.validate()</span>
+
+<span class="sd">    Note:</span>
+
+<span class="sd">        This method is called at end of the __init__ constructor</span>
+<span class="sd">        and every time before the predictor - or a class holding</span>
+<span class="sd">        it as an instance variable - is send to the getML engine.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># ------------------------------------------------------------</span>
+
+    <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;params must be None or a dictionary!&quot;</span><span class="p">)</span>
+
+    <span class="n">_validate_xgboost_parameters</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="c1"># ------------------------------------------------------------</span>
+
+    <span class="k">if</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;objective&quot;</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;reg:squarederror&quot;</span><span class="p">,</span> <span class="s2">&quot;reg:tweedie&quot;</span><span class="p">,</span> <span class="s2">&quot;reg:linear&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;&#39;objective&#39; supported in XGBoostRegressor</span>
+<span class="sd">                             are &#39;reg:squarederror&#39;, &#39;reg:tweedie&#39;,</span>
+<span class="sd">                             and &#39;reg:linear&#39;&quot;&quot;&quot;</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.bd41221c.min.js"></script>
+      
+    
+  </body>
+</html>
