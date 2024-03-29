@@ -1,5 +1,6 @@
 site_name: GetML
 site_url: https://getml.github.io/getml-docs/mkdocs/
+site_dir: mkdocs
 theme:
   name: material
 
