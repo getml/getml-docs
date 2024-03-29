@@ -1,0 +1,42 @@
+site_name: My Docs
+theme:
+  name: material
+
+repo_name: getml/getml
+repo_url: https://github.com/getml/getml
+edit_uri: edit/main/docs/
+
+# see https://github.com/pydantic/pydantic/blob/main/mkdocs.yml
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+      title: Page contents
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      pygments_lang_class: true
+  - pymdownx.extra
+  - pymdownx.emoji:
+      # emoji_index: !!python/name:material.extensions.emoji.twemoji
+      # emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+  - mkdocstrings
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - section-index
+  - mkdocstrings
+
+nav:
+  # rest of the navigation...
+  # defer to gen-files + literate-nav
+  - Code Reference: reference/
+# rest of the navigation...
