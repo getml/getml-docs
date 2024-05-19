@@ -1,5 +1,9 @@
+---
+title: Annotating data
+description: Annotating stuff description
+---
+
 [](){#annotating-data}
-# Annotating data
 
 After you have [imported][importing-data] your data into the getML engine, there is one more step to undertake before you can start learning features: You need to assign a **role** to each column. Why is that?
 
@@ -20,23 +24,24 @@ When **learning features**, please keep the following things in mind:
 
 - Only [`columns`](getml/data/columns) with roles of [categorical][annotating-data-categorical], [numerical][annotating-data-numerical], and [time stamp][annotating-data-time-stamp] will be used by the feature learning algorithm for aggregations or conditions, unless you explicitly tell it to aggregate [target][annotating-data-target] columns as well (refer to `allow_lagged_target` in [`join()`](getml/data/Placeholder/join)).
 - Columns are only compared with each other if they have the same [unit][annotating-data-units].
-- If you want to make sure that a column is *only* used for comparison, you can set `comparison_only` (refer to [annotating units][annotating-data-units]). Time stamps are automatically set to `comparison_only`.
+- If you want to make sure that a column is _only_ used for comparison, you can set `comparison_only` (refer to [annotating units][annotating-data-units]). Time stamps are automatically set to `comparison_only`.
 
 [](){#annotating-data-roles}
+
 ## Roles
 
 Roles determine if and how [`columns`](getml/data/columns) are handled during the construction of the [data model][data-model] and how they are interpreted by the [feature learning algorithm][feature-engineering]. The following roles are available in getML:
 
-| Role                | Class                                             | Included in FL algorithm |
-|---------------------|---------------------------------------------------|--------------------------|
-| [`categorical`](getml/data/roles/categorical)       | [`StringColumn`](getml/data/columns/StringColumn) | yes                    |
-| [`numerical`](getml/data/roles/numerical)         | [`FloatColumn`](getml/data/columns/FloatColumn)   | yes                    |
-| [`text`](getml/data/roles/text)              | [`StringColumn`](getml/data/columns/StringColumn) | yes                    |
-| [`time_stamp`](getml/data/roles/time_stamp)        | [`FloatColumn`](getml/data/columns/FloatColumn)   | yes                    |
-| [`join_key`](getml/data/roles/join_key)          | [`StringColumn`](getml/data/columns/StringColumn) | no                     |
-| [`target`](getml/data/roles/target)            | [`FloatColumn`](getml/data/columns/FloatColumn)   | not by default         |
-| [`unused_float`](getml/data/roles/unused_float)      | [`FloatColumn`](getml/data/columns/FloatColumn)   | no                     |
-| [`unused_string`](getml/data/roles/unused_string)     | [`StringColumn`](getml/data/columns/StringColumn) | no                     |
+| Role                                              | Class                                             | Included in FL algorithm |
+| ------------------------------------------------- | ------------------------------------------------- | ------------------------ |
+| [`categorical`](getml/data/roles/categorical)     | [`StringColumn`](getml/data/columns/StringColumn) | yes                      |
+| [`numerical`](getml/data/roles/numerical)         | [`FloatColumn`](getml/data/columns/FloatColumn)   | yes                      |
+| [`text`](getml/data/roles/text)                   | [`StringColumn`](getml/data/columns/StringColumn) | yes                      |
+| [`time_stamp`](getml/data/roles/time_stamp)       | [`FloatColumn`](getml/data/columns/FloatColumn)   | yes                      |
+| [`join_key`](getml/data/roles/join_key)           | [`StringColumn`](getml/data/columns/StringColumn) | no                       |
+| [`target`](getml/data/roles/target)               | [`FloatColumn`](getml/data/columns/FloatColumn)   | not by default           |
+| [`unused_float`](getml/data/roles/unused_float)   | [`FloatColumn`](getml/data/columns/FloatColumn)   | no                       |
+| [`unused_string`](getml/data/roles/unused_string) | [`StringColumn`](getml/data/columns/StringColumn) | no                       |
 
 When constructing a [`DataFrame`](getml/data/DataFrame) via the class methods [`from_csv`](getml/data/DataFrame/from_csv), [`from_pandas`](getml/data/DataFrame/from_pandas), [`from_db`](getml/data/DataFrame/from_db), and [`from_json`](getml/data/DataFrame/from_json), all [`columns`](getml/data/columns) will have either the role [unused float][annotating-data-unused-float] or [unused string][annotating-data-unused-string] . Unused columns will be ignored by the feature learning and machine learning (ML) algorithms.
 
@@ -68,7 +73,7 @@ To make use of the imported data, you have to tell getML how you intend to use e
 getml_df.set_role(['animal_id'], getml.data.roles.join_key)
 getml_df.set_role(['animal'], getml.data.roles.categorical)
 getml_df.set_role(['votes', 'weight'], getml.data.roles.numerical)
-getml_df.set_role(['date'], getml.data.roles.time_stamp)    
+getml_df.set_role(['date'], getml.data.roles.time_stamp)
 getml_df
 # Output:
 # | date                        | animal_id | animal      | votes     | weight    |
@@ -78,9 +83,10 @@ getml_df
 # | 2019-02-28T00:00:00.000000Z | 512       | parrot      | 5127      | 12.6      |
 # | 2018-12-24T00:00:00.000000Z | 671       | goose       | 65311     | 11.92     |
 ```
+
 When assigning new roles to existing columns, you might notice that some of
 these calls are completed in an instance while others might take a considerable
-amount of time. What's happening here? A column's role also determines its type. 
+amount of time. What's happening here? A column's role also determines its type.
 When you set a new role, an implicit type conversion might take place.
 
 ## A note on reproducibility and efficiency
@@ -100,6 +106,7 @@ df_expd = getml.data.DataFrame.from_csv(
     ignore=True
 )
 ```
+
 If the `ignore` argument is set to `True`, any columns missing in the dictionary won't be imported at all.
 
 If you feel that writing the roles by hand is too tedious, you can use `dry`: If you call the import interface while setting the `dry` argument to `True`, no data is read. Instead, the default roles of all columns will be returned as a dictionary. You can store, alter, and hard-code this dictionary into your stable pipeline.
@@ -110,20 +117,22 @@ roles = getml.data.DataFrame.from_csv(
     name="MY DATA FRAME",
     sep=';',
     quotechar='"',
-    dry=True                                     
+    dry=True
 )
 ```
 
 Even if your data source is type safe, setting roles is still a good idea because it is also more efficient. Using [`set_role()`](getml/data/DataFrame/set_role) creates a deep copy of the original column and might perform an implicit type conversion. If you already know where you want your data to end up, it might be a good idea to set roles in advance.
 [](){#annotating-data-join-keys}
+
 ## Join key
 
 Join keys are required to establish a relation between two [`DataFrame`](getml/data/DataFrame) objects. Please refer to the [data models][data-model] for details.
 
 The content of this column is allowed to contain NULL values. NULL values won't be matched to anything, not even to NULL values in other join keys.
 
-[`columns`](getml/data/columns) of this role will *not* be aggregated by the feature learning algorithm or used for conditions.
+[`columns`](getml/data/columns) of this role will _not_ be aggregated by the feature learning algorithm or used for conditions.
 [](){#annotating-data-time-stamp}
+
 ## Time stamp
 
 This role is used to prevent data leaks. When you join one table onto another, you usually want to make sure that no data from the future is used. Time stamps can be used to limit your joins.
@@ -133,50 +142,53 @@ In addition, the feature learning algorithm can aggregate time stamps or use the
 ```sql
 WHERE time_stamp > some_fixed_date
 ```
+
 Instead, time stamps will always be compared to other time stamps:
 
 ```sql
 WHERE time_stamp1 - time_stamp2 > some_value
 ```
+
 This is because it is unlikely that comparing time stamps to a fixed date performs
 well out-of-sample.
 
-When assigning the role time stamp to a column that is currently a 
-[`StringColumn`](getml/data/StringColumn), 
-you need to specify the format of this string. You can do so by using 
+When assigning the role time stamp to a column that is currently a
+[`StringColumn`](getml/data/StringColumn),
+you need to specify the format of this string. You can do so by using
 the `time_formats` argument of
 [`set_role()`](getml/data/DataFrame/set_role). You can pass a list of time formats
 that is used to try to interpret the input strings. Possible format options are
 
-* %w - abbreviated weekday (Mon, Tue, ...)
-* %W - full weekday (Monday, Tuesday, ...)
-* %b - abbreviated month (Jan, Feb, ...)
-* %B - full month (January, February, ...)
-* %d - zero-padded day of month (01 .. 31)
-* %e - day of month (1 .. 31)
-* %f - space-padded day of month ( 1 .. 31)
-* %m - zero-padded month (01 .. 12)
-* %n - month (1 .. 12)
-* %o - space-padded month ( 1 .. 12)
-* %y - year without century (70)
-* %Y - year with century (1970)
-* %H - hour (00 .. 23)
-* %h - hour (00 .. 12)
-* %a - am/pm
-* %A - AM/PM
-* %M - minute (00 .. 59)
-* %S - second (00 .. 59)
-* %s - seconds and microseconds (equivalent to %S.%F)
-* %i - millisecond (000 .. 999)
-* %c - centisecond (0 .. 9)
-* %F - fractional seconds/microseconds (000000 - 999999)
-* %z - time zone differential in ISO 8601 format (Z or +NN.NN)
-* %Z - time zone differential in RFC format (GMT or +NNNN)
-* %% - percent sign 
+- %w - abbreviated weekday (Mon, Tue, ...)
+- %W - full weekday (Monday, Tuesday, ...)
+- %b - abbreviated month (Jan, Feb, ...)
+- %B - full month (January, February, ...)
+- %d - zero-padded day of month (01 .. 31)
+- %e - day of month (1 .. 31)
+- %f - space-padded day of month ( 1 .. 31)
+- %m - zero-padded month (01 .. 12)
+- %n - month (1 .. 12)
+- %o - space-padded month ( 1 .. 12)
+- %y - year without century (70)
+- %Y - year with century (1970)
+- %H - hour (00 .. 23)
+- %h - hour (00 .. 12)
+- %a - am/pm
+- %A - AM/PM
+- %M - minute (00 .. 59)
+- %S - second (00 .. 59)
+- %s - seconds and microseconds (equivalent to %S.%F)
+- %i - millisecond (000 .. 999)
+- %c - centisecond (0 .. 9)
+- %F - fractional seconds/microseconds (000000 - 999999)
+- %z - time zone differential in ISO 8601 format (Z or +NN.NN)
+- %Z - time zone differential in RFC format (GMT or +NNNN)
+- %% - percent sign
 
 If none of the formats works, the getML engine will try to interpret
 the time stamps as numerical values. If this fails, the time stamp will be set
 to NULL.
+
 ```python
 data_df = dict(
 date1=[getml.data.time.days(365), getml.data.time.days(366), getml.data.time.days(367)],
@@ -193,61 +205,68 @@ df
 # | 1971-01-02T00:00:00.000000Z | 1971-01-02T00:00:00.000000Z | 1971-01-02T00:00:00.000000Z |
 # | 1971-01-03T00:00:00.000000Z | 1971-01-03T00:00:00.000000Z | 1971-01-03T00:00:00.000000Z |
 ```
-!!! note 
 
-    getML time stamps are actually floats expressing the number of seconds since 
+!!! note
+
+    getML time stamps are actually floats expressing the number of seconds since
     UNIX time (1970-01-01T00:00:00).
 
-
 [](){#annotating-data-target}
+
 ## Target
 
 The associated [columns](getml/data/columns) contain the variables we want to predict. They are not used by the feature learning algorithm unless we explicitly tell it to do so (refer to `allow_lagged_target` in [`join()`](getml/data/Placeholder/join)). However, they are such an important part of the analysis that the population table is required to contain at least one of them (refer to [data model tables][data-model-tables]).
 
 The content of the target columns needs to be numerical. For classification problems, target variables can only assume the values 0 or 1. Target variables can never be `NULL`.
 [](){#annotating-data-numerical}
+
 ## Numerical
 
 This role tells the getML engine to include the associated [`FloatColumn`](getml/data/columns/FloatColumn) during the feature learning.
 
 It should be used for all data with an inherent ordering, regardless of whether it is sampled from a continuous quantity, like passed time or the total amount of rainfall, or a discrete one, like the number of sugary mulberries one has eaten since lunch.
 [](){#annotating-data-categorical}
+
 ## Categorical
 
 This role tells the getML engine to include the associated [`StringColumn`](getml/data/columns/StringColumn) during feature learning.
 
 It should be used for all data with no inherent ordering, even if the categories are encoded as integers instead of strings.
 [](){#annotating-data-text}
+
 ## Text
 
 getML provides the role [`text`](getml/data/roles/text) to annotate free form text fields within relational data structures. getML deals with columns of role [`text`](getml/data/roles/text) through one of two approaches: Text fields can either be integrated into features by learning conditions based on the mere presence (or absence) of certain words in those text fields (the default) or they can be split into a relational bag-of-words representation by means of the [`TextFieldSplitter`](getml/preprocessors/TextFieldSplitter) preprocessor. For more information on getML's handling of text fields, refer to [the Preprocessing section][preprocessing-free-form-text]
 [](){#annotating-data-unused-float}
+
 ## Unused_float
 
 Marks a [`FloatColumn`](getml/data/columns/FloatColumn) as unused.
 
 The associated columns will be neither used for the data model nor by the feature learning algorithms and predictors.
 [](){#annotating-data-unused-string}
+
 ## Unused_string
 
 Marks a [`StringColumn`](getml/data/columns/StringColumn) as unused.
 
 The associated columns will be neither used for the data model nor by the feature learning algorithms and predictors.
 [](){#annotating-data-units}
+
 ## Units
 
 By default, all columns of role [categorical][annotating-data-categorical] or [numerical][annotating-data-numerical] will only be compared to fixed values.
 
 ```sql
 ...
-WHERE numerical_column > some_value 
+WHERE numerical_column > some_value
 OR categorical_column == 'some string'
 ...
 ```
-If you want the feature learning algorithms to
-compare these columns with each other (like in the snippet below), 
-you have to explicitly set a unit. 
 
+If you want the feature learning algorithms to
+compare these columns with each other (like in the snippet below),
+you have to explicitly set a unit.
 
 ```sql
 ...
@@ -256,19 +275,19 @@ OR categorical_column1 != categorical_column2
 ...
 
 ```
-Using [`set_unit()`](getml/data/DataFrame/set_unit) you can set the *unit* of
+
+Using [`set_unit()`](getml/data/DataFrame/set_unit) you can set the _unit_ of
 a column to an arbitrary, non-empty string. If it matches the string
 of another column, both of them will be compared by the getML
 engine. Please note that a column can not have more than one unit.
 
-There are occasions where *only* a pairwise comparison of columns but
+There are occasions where _only_ a pairwise comparison of columns but
 not a comparison with fixed values is useful. To cope with this problem,
 you can set the `comparison_only` flag in
 [`set_unit()`](getml/data/DataFrame/set_unit).
 
 !!! note
 
-    Note that time stamps are used for comparison only by default. The feature 
+    Note that time stamps are used for comparison only by default. The feature
     learning algorithm will not compare them to a fixed date, because
     it is very unlikely that such a feature would perform well out-of-sample.
-
