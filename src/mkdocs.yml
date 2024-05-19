@@ -19,8 +19,8 @@ copyright: Copyright &copy; 2017 - 2024 Code17 GmbH
 theme:
   name: material
   custom_dir: overrides
-  logo: assets/brand/3/getml-light.svg
-  logo_dark_mode: assets/brand/3/getml-dark.svg
+  logo: assets/brand/getml-light.svg
+  logo_dark_mode: assets/brand/getml-dark.svg
   favicon: assets/brand/logo-color.png
   features:
     - navigation.instant
